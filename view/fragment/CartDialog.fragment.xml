@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="com.sap.build.sansiri.v10.controller.DialogCart" xmlns="sap.m"
+	xmlns:unified="sap.ui.unified">
+	<Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="{i18n>Label.CartList} ({controlModel>/cartLength})" type="Standard"
+		verticalScrolling="true">
+		<content>
+			<Table width="100%" noDataText="No data" mode="Delete" showSeparators="All" growing="true" growingThreshold="1000" growingScrollToLoad="true"
+				delete="handleDeleteFromCart" items="{cartModel>/}">
+				<!--<infoToolbar>-->
+				<!--	<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">-->
+				<!--		<content>-->
+				<!--			<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+				<!--		</content>-->
+				<!--	</Toolbar>-->
+				<!--</infoToolbar>-->
+				<headerToolbar/>
+				<columns>
+					<Column width="150px" hAlign="Left" vAlign="Middle" demandPopin="false" >
+						<header>
+							<Text text="{i18n>Label.Material}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="150px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>Label.Description}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="120px" hAlign="Center" vAlign="Middle" demandPopin="false" >
+						<header>
+							<Text text="{i18n>Label.Quantity}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="70px" hAlign="Center" vAlign="Middle" demandPopin="false" >
+						<header>
+							<Text text="{i18n>Label.Unit}"/>
+						</header>
+						<footer/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Inactive">
+						<cells>
+							<ObjectIdentifier title="{cartModel>MATNR}" text="{cartModel>MAKTX}" titleActive="false" visible="true"/>
+							<ObjectIdentifier title="{cartModel>MATKL}" text="{cartModel>WGBEZ}" titleActive="false" visible="true"/>
+							<StepInput value="{path: 'cartModel>QTY', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" min="1" step="1" largerStep="5"
+								change="onChangeStepQty" displayValuePrecision="2" width="auto" valueState="None" editable="true" enabled="true" visible="true"/>
+							<Text text="{cartModel>MSEHL}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button text="{i18n>Button.AddToPr}" type="Accept" iconFirst="true" width="auto" enabled="{= ${controlModel>/cartLength} > 0}" visible="true" iconDensityAware="false"
+				press="handleAddCartToPr"/>
+			<Button text="{i18n>Button.Close}" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+				press="handleCloseCartDialog"/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

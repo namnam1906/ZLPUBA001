@@ -1,0 +1,22 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.cu.s4hana.zlpuba001.controller.PrNewItem" xmlns:uxap="sap.uxap" xmlns="sap.m"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" >
+	<Page
+		id="idPrNewItemPage"
+		title="{i18n>Label.PrNewItemTitle}"
+		showHeader="true" 
+		showNavButton="true">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button type="Back" press="handleBackPress" />
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>Label.PrNewItemTitle}"/>
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<footer/>
+	</Page>
+</mvc:View>

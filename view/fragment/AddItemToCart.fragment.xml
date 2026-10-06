@@ -1,0 +1,79 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:unified="sap.ui.unified" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="true" title="{i18n>Label.AddItemToCart}" type="Standard"
+		verticalScrolling="false">
+		<content>
+			<layout:DynamicSideContent equalSplit="false" sideContentPosition="Begin">
+				<layout:mainContent>
+					<Table width="100%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="1000" growingScrollToLoad="true"
+						items="{materialList>/}">
+						<headerToolbar>
+							<OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+								<content>
+									<Title text="{i18n>Label.MaterialList} ({=${materialList>/}.length})" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+									<ToolbarSpacer/>
+									<SearchField placeholder="{i18n>Label.SearchMaterial}" showSearchButton="true" visible="true" width="auto" liveChange="onLiveSearchMaterial"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="120px" hAlign="Left" vAlign="Middle" demandPopin="false" mergeDuplicates="false">
+								<header>
+									<Text text="{i18n>Label.Material}"/>
+								</header>
+								<footer/>
+							</Column>
+							<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+								<header>
+									<Text text="{i18n>Label.MaterialName}"/>
+								</header>
+								<footer/>
+							</Column>
+							<Column width="100px" hAlign="Center" vAlign="Middle" demandPopin="false" mergeDuplicates="false">
+								<header>
+									<Text text="{i18n>Button.AddToCart}"/>
+								</header>
+								<footer/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Inactive">
+								<cells>
+									<Text text="{materialList>MATNR}"/>
+									<Text text="{materialList>MAKTX}"/>
+									<Button text="{i18n>Button.Add}" type="Emphasized" tooltip="{i18n>Button.AddToCart}" iconDensityAware="false" press="handleAddItemToCart"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</layout:mainContent>
+				<layout:sideContent>
+					<List mode="SingleSelectMaster" width="100%" backgroundDesign="Transparent" showSeparators="All" growing="true" growingThreshold="100"
+						growingScrollToLoad="true" visible="true" itemPress="handlePressMaterialGroup" items="{materialGroupList>/}">
+						<headerToolbar>
+							<Toolbar enabled="true" visible="true" width="" design="Solid">
+								<content>
+									<SearchField placeholder="{i18n>Label.SearchMaterialGroup}" showSearchButton="true" width="100%" liveChange="onLiveSearchMaterialGroup"/>
+								</content>
+							</Toolbar>
+						</headerToolbar>
+						<items>
+							<ObjectListItem intro="" title="{materialGroupList>WGBEZ}" number="{path: 'materialGroupList>MAT_NUMC', type: 'sap.ui.model.type.Integer'}"
+								numberState="None" type="Active" selected="false" numberUnit="{i18n>Label.ItemList}">
+								<attributes>
+									<ObjectAttribute title="" text="{materialGroupList>MATKL}" active="false" visible="true"/>
+								</attributes>
+								<firstStatus/>
+								<secondStatus/>
+							</ObjectListItem>
+						</items>
+					</List>
+				</layout:sideContent>
+			</layout:DynamicSideContent>
+		</content>
+		<buttons>
+			<Button text="{i18n>Button.Cart} ({controlModel>/cartLength})" type="Emphasized" enabled="{= ${controlModel>/cartLength} > 0}" press="handleCartPress"/>
+			<Button text="{i18n>Button.Cancel}" type="Default" press="handleCloseAddItemToCartDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

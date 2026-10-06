@@ -1,0 +1,263 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="true" title="{i18n>Label.CreateNewAsset}" type="Standard"
+		verticalScrolling="true">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title/>
+				<form:layout>
+					<form:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>
+				</form:layout>
+				<form:formContainers>
+					<form:FormContainer visible="true" title="{i18n>Label.GeneralData}">
+						<form:formElements>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.AssetClass}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/ANLKL}" change="onChangeAssetClass" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHAssetClass" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/ANLKL/@maxLength', formatter:'.formatter.parseInt'}">
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Input>
+									<Text text="{prNewAsset>/ANLKL_NAME}" >
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Text>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.SubAssetClass}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/ZANLKL2}" change="onChangeSubAssetClass" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHSubAssetClass" app:KNTTP="NA"
+										editable="{= ${prNewAsset>/ANLKL} !== '' &amp;&amp; ${prNewAsset>/ANLKL} !== undefined}"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/ZANLKL2/@maxLength', formatter:'.formatter.parseInt'}">
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Input>
+									<Text text="{prNewAsset>/ZANLKL2_NAME}" >
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Text>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.BusinessArea}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/GSBER}" change="onChangeBusinessArea" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHBusinessArea" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/GSBER/@maxLength', formatter:'.formatter.parseInt'}">
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Input>
+									<Text text="{prNewAsset>/GSBER_NAME}">
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Text>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.AccountAssignment.CostCenter}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/KOSTL}" change="onChangeCostCenter" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHCostCenter" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/KOSTL/@maxLength', formatter:'.formatter.parseInt'}">
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Input>
+									<Text text="{prNewAsset>/KOSTL_NAME}" >
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Text>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+					<form:FormContainer visible="true" title="{i18n>Label.AssetTimeDependent}">
+						<form:formElements>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.Fund}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/GEBER}" change="onChangeFund" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHFund" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/GEBER/@maxLength', formatter:'.formatter.parseInt'}">
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Input>
+									<Text text="{prNewAsset>/GEBER_NAME}" >
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Text>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<!--<Label text="เขตหน้าที่" required="true"/>-->
+									<Label text="{i18n>Label.FunctionalArea}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/FKBER}" change="onChangeFunctionalArea" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHFunctionalArea" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/FKBER/@maxLength', formatter:'.formatter.parseInt'}">
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Input>
+									<Text text="{prNewAsset>/FKBER_NAME}" >
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Text>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.FundCenter}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/FISTL}" change="onChangeFundCenter" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHFundCenter" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/FISTL/@maxLength', formatter:'.formatter.parseInt'}">
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Input>
+									<Text text="{prNewAsset>/FISTL_NAME}" >
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="XL6 L6 M6 S6"/>-->
+										<!--</layoutData>-->
+									</Text>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+					<form:FormContainer visible="true" title="{i18n>Label.Assignments}">
+						<form:formElements>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.FiscalYearAsset}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/ORD41}" change="onChangeFiscalYearAsset" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHFiscalYearAsset" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/ORD41/@maxLength', formatter:'.formatter.parseInt'}">
+										<layoutData>
+											<layout:GridData span="XL6 L6 M6 S6"/>
+										</layoutData>
+									</Input>
+									<Text text="{prNewAsset>/ORD41_NAME}" >
+										<layoutData>
+											<layout:GridData span="XL6 L6 M6 S6"/>
+										</layoutData>
+									</Text>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.ActivityType}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/GDLGRP}" change="onChangeActivityType" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHActivityType" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/GDLGRP/@maxLength', formatter:'.formatter.parseInt'}">
+										<layoutData>
+											<layout:GridData span="XL6 L6 M6 S6"/>
+										</layoutData>
+									</Input>
+									<Text text="{prNewAsset>/GDLGRP_NAME}" >
+										<layoutData>
+											<layout:GridData span="XL6 L6 M6 S6"/>
+										</layoutData>
+									</Text>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+					<form:FormContainer visible="true" title="{i18n>Label.Source}">
+						<form:formElements>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.OrderInvestment}" required="false"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prNewAsset>/AUFNR}" change="onChangeOrder" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHOrder" app:KNTTP="NA"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrAccAssignment/AUFNR/@maxLength', formatter:'.formatter.parseInt'}">
+										<layoutData>
+											<layout:GridData span="XL6 L6 M6 S6"/>
+										</layoutData>
+									</Input>
+									<Text text="{prNewAsset>/AUFNR_NAME}" >
+										<layoutData>
+											<layout:GridData span="XL6 L6 M6 S6"/>
+										</layoutData>
+									</Text>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+			</form:Form>
+		</content>
+		<beginButton>
+			
+		</beginButton>
+		<buttons>
+			<Button text="{errorsAsset>/ERROR_NUM}" icon="sap-icon://message-popup" type="Emphasized" iconFirst="true" width="auto"
+				enabled="true" iconDensityAware="false" press="handleErrorLogAssetPress" visible="{errorsAsset>/VISIBLE}"/>
+			<Button text="{i18n>Button.CreateNewAsset}" type="Accept" press="doCreateNewAsset"
+				enabled="{= ${prNewAsset>/ANLKL} !== undefined &amp;&amp; ${prNewAsset>/ANLKL} !== '' &amp;&amp; 
+					${prNewAsset>/ZANLKL2} !== undefined &amp;&amp; ${prNewAsset>/ZANLKL2} !== '' &amp;&amp; 
+					${prNewAsset>/GSBER} !== undefined &amp;&amp; ${prNewAsset>/GSBER} !== '' &amp;&amp;
+					${prNewAsset>/KOSTL} !== undefined &amp;&amp; ${prNewAsset>/KOSTL} !== '' &amp;&amp;
+					${prNewAsset>/GEBER} !== undefined &amp;&amp; ${prNewAsset>/GEBER} !== '' &amp;&amp;
+					${prNewAsset>/FKBER} !== undefined &amp;&amp; ${prNewAsset>/FKBER} !== '' &amp;&amp;
+					${prNewAsset>/FISTL} !== undefined &amp;&amp; ${prNewAsset>/FISTL} !== '' &amp;&amp;
+					${prNewAsset>/ORD41} !== undefined &amp;&amp; ${prNewAsset>/ORD41} !== '' &amp;&amp; 
+					${prNewAsset>/GDLGRP} !== undefined &amp;&amp; ${prNewAsset>/GDLGRP} !== '' }"/>
+			<Button text="{i18n>Button.Cancel}" type="Default" press="handleCloseDialog"/>
+		</buttons>
+		<customHeader/>
+		<endButton>
+			<!--<Button text="{i18n>Button.CreateNewAsset}" type="Accept" press="doCreateNewAsset"/>-->
+			<!--<Button text="{i18n>Button.Cancel}" type="Reject" press="handleCloseDialog"/>-->
+		</endButton>
+		<subHeader/>
+	</Dialog>	
+</core:FragmentDefinition>

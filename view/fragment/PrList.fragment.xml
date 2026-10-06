@@ -1,0 +1,104 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.f" xmlns:table="sap.ui.table" xmlns:core="sap.ui.core"
+	xmlns:variants="sap.ui.comp.variants" xmlns:form="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar" xmlns:unified="sap.ui.unified"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<smartTable:SmartTable id="idSmartTablePrList" entitySet="PrHeaderSet" tableType="ResponsiveTable" useExportToExcel="true"
+		smartFilterId="smartFilterBar" enableAutoBinding="false" editable="false" showTablePersonalisation="true"
+		app:p13nDialogSettings="{group:{visible:true},filter:{visible:false},sort:{visible:true}}" useVariantManagement="true"
+		useTablePersonalisation="true" header="{i18n>Label.PrListTitle}" showRowCount="true" beforeExport="onBeforeExport"
+		persistencyKey="zlpuba001.Smarttable" demandPopin="true" class="sapUiResponsiveContentPadding" busyIndicatorDelay="0"
+		beforeRebindTable="onbeforeRebindTable" showFullScreenButton="true"
+		ignoredFields="WERKS,MATNR,MATKL,EKGRP,FISTL,GEBER,KNTTP,WERKS_NAME,E_GP_NR,REQ_NR" initiallyVisibleFields="">
+		<smartTable:customToolbar>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>Button.CreateNewPr}" type="Default" press="handleCreateNewPr" enabled="{= ${userParam>/CREATE_FLAG}}" />
+				<Button text="{i18n>Button.CreateRefEgp}" type="Default" press="handleCreateRefEgp" enabled="{= ${userParam>/CREATE_FLAG}}" />
+			</OverflowToolbar>
+		</smartTable:customToolbar>
+		<smartTable:customData>
+			<core:CustomData key="dateFormatSettings" value='\{"UTC":true,"pattern":"dd.MM.yyyy"\}'/>
+		</smartTable:customData>
+		<Table id="idTablePrList" mode="SingleSelectMaster" itemPress="onPrListPress" growingThreshold="10000" growing="true" growingScrollToLoad="true" >
+			<columns>
+				<Column hAlign="Left" vAlign="Top" mergeDuplicates="false" width="120px">
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey":"BANFN","columnIndex":"0","leadingProperty":"BANFN","sortProperty":"BANFN"}'/>
+					</customData>
+					<Text text="{i18n>Label.PrNo}"/>
+				</Column>
+				<Column hAlign="Left" vAlign="Top" mergeDuplicates="false" width="170px">
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey":"BSART_NAME","columnIndex":"1","leadingProperty":["BSART","BSART_NAME"],"sortProperty":"BSART_NAME"}'/>
+					</customData>
+					<Text text="{i18n>Label.PrDocTypeName}"/>
+				</Column>
+				<Column hAlign="Left" vAlign="Top" mergeDuplicates="false">
+					<customData>
+						<core:CustomData key="p13nData" value='\{"columnKey":"TXZ01","columnIndex":"2","leadingProperty":"TXZ01","sortProperty":"TXZ01"}'/>
+					</customData>
+					<Text text="{i18n>Label.ShortTextFirstItem}"/>
+				</Column>
+				<Column hAlign="Right" vAlign="Top" mergeDuplicates="false" width="150px">
+					<customData>
+						<core:CustomData key="p13nData" value='\{"columnKey":"RLWRT","columnIndex":"3","leadingProperty":["RLWRT","WAERS"],"sortProperty":"RLWRT"}'/>
+					</customData>
+					<Text text="{i18n>Label.TotalValue}" width="120px"/>
+				</Column>
+				<!--<Column hAlign="Left" vAlign="Top" mergeDuplicates="false" width="180px">-->
+				<!--	<customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey":"ERNAM_NAME","columnIndex":"4","leadingProperty":"ERNAM_NAME","sortProperty":"ERNAM_NAME"}'/>-->
+				<!--	</customData>-->
+				<!--	<Text text="{i18n>Label.CreateBy}"/>-->
+				<!--</Column>-->
+				<Column hAlign="Left" vAlign="Top" mergeDuplicates="false" width="180px">
+					<customData>
+						<core:CustomData key="p13nData" value='\{"columnKey":"EKGRP_NAME","columnIndex":"4","leadingProperty":"EKGRP_NAME","sortProperty":""}'/>
+					</customData>
+					<Text text="{i18n>Label.PurchasingGroup}"/>
+				</Column>
+				<Column hAlign="Center" vAlign="Top" mergeDuplicates="false" width="120px">
+					<customData>
+						<core:CustomData key="p13nData" value='\{"columnKey":"BADAT","columnIndex":"5","leadingProperty":"BADAT","sortProperty":"BADAT"}'/>
+					</customData>
+					<Text text="{i18n>Label.CreateDate}"/>
+				</Column>
+				<Column hAlign="Center" vAlign="Top" mergeDuplicates="false" width="120px">
+					<customData>
+						<core:CustomData key="p13nData" value='\{"columnKey":"STATUS_NAME","columnIndex":"6","leadingProperty":["STATUS_NAME","STATUS"],"sortProperty":"STATUS"}'/>
+					</customData>
+					<Text text="{i18n>Label.Status}"/>
+				</Column>
+				<Column hAlign="Center" vAlign="Top" mergeDuplicates="false" width="100px">
+					<customData>
+						<core:CustomData key="p13nData" value='\{"columnKey":"ACTION","columnIndex":"7","leadingProperty":"ACTION","sortProperty":""}'/>
+					</customData>
+					<Text text="{i18n>Label.Action}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Active" >
+					<cells>
+						<Text text="{BANFN}"/>
+						<Text text="{BSART_NAME}"/>
+						<Text text="{TXZ01}"/>
+						<ObjectNumber number="{ path: 'RLWRT', type: 'sap.ui.model.type.Float', formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 } }"
+							unit="{WAERS}"/>
+						<!--<Text text="{ERNAM_NAME}"/>-->
+						<Text text="{EKGRP_NAME}"/>
+						<Text text="{path: 'BADAT', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy', UTC: false, style: 'short' } }"
+										maxLines="2"/>
+						<!--<ObjectStatus text="{ path : 'STATUS' , formatter : '.formatter.parseStatusText' }" state="{ path : 'STATUS' , formatter : '.formatter.parseStatus' }"/>-->
+						<ObjectStatus text="{STATUS_NAME}" state="{ path : 'STATUS' , formatter : '.formatter.parseStatus' }"/>
+						<HBox justifyContent="Center">
+							<Button text="{i18n>Button.Copy}" class="sapUiTinyMarginEnd" type="Ghost" press="handleCopyPr" enabled="{= ${userParam>/CREATE_FLAG}}" />
+							<Button text="{i18n>Button.Print}" type="Default" press="handlePrintPr"/>
+						</HBox>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</smartTable:SmartTable>
+</core:FragmentDefinition>

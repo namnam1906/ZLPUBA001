@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:dnd="sap.ui.core.dnd">
+	<Table
+		mode="None" class="sapUiTinyMarginBegin"
+		growing="true"
+		growingThreshold="10"
+		beforeOpenContextMenu="onBeforeOpenContextMenu"
+		items="{prEgpData>/EGPWS0007/product}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>Label.EgpInfo} ({=${prEgpData>/EGPWS0007/product}.length})" />
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column hAlign="Center" width="70px" demandPopin="false">
+				<VBox>
+					<Text text="{i18n>Label.ItemList}" />
+					<Text text="e-GP" />
+				</VBox>
+			</Column>
+			<Column demandPopin="false">
+				<VBox>
+					<Text text="{i18n>Label.EgpCode} /" />
+					<Text text="{i18n>Label.EgpDesc}" />
+				</VBox>
+			</Column>
+			<Column hAlign="End" width="100px" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>Label.Qty}" />
+			</Column>
+			<Column hAlign="End" width="120px" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>Label.EgpTotalPrice}" />
+			</Column>
+			<Column hAlign="End" width="120px" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>Label.EgpItemBudget}" />
+			</Column>
+		</columns>
+		<dragDropConfig>
+				<dnd:DragDropInfo
+					sourceAggregation="items"
+					targetElement="idPrListEgp"
+					targetAggregation="items"
+                    dropPosition="On"
+                    dragStart="onDragStart"
+                    dragEnd="onDragEnd"
+					drop="onDrop"/>
+			</dragDropConfig>
+		<items>
+			<ColumnListItem type="Inactive">
+				<cells>
+					<Text text="{prEgpData>field1}" wrapping="false" />
+					<!-- <ObjectIdentifier title="{prEgpData>field3}" text="{prEgpData>field11}" titleActive="false" visible="true"/> --><!-- CH12: DEL -->
+					<ObjectIdentifier title="{prEgpData>field2}" text="{prEgpData>field11}" titleActive="false" visible="true"/><!-- CH12: INS -->
+					<ObjectNumber number="{ path: 'prEgpData>field5', type: 'sap.ui.model.type.Float', formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 } }"
+							unit="{prEgpData>sapUnit}" emphasized="false"/>
+					<ObjectNumber number="{ path: 'prEgpData>field24', type: 'sap.ui.model.type.Float', formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 } }"
+							unit="THB" emphasized="false"/>
+					<ObjectNumber number="{ path: 'prEgpData>field25', type: 'sap.ui.model.type.Float', formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 } }"
+							unit="THB" emphasized="false"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

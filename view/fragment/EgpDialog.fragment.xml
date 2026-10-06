@@ -1,0 +1,125 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="{i18n>Label.CreatePrRefEgpTitle}" type="Standard"
+		verticalScrolling="true">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title/>
+				<form:layout>
+					<form:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</form:layout>
+				<form:formContainers>
+					<form:FormContainer visible="true" title="{i18n>Label.EgpInfo}">
+						<form:formElements>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.EgpNo}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prEgpInfo>/EGP_NO}" type="Text" textAlign="Left" change="handleChangeEgp"
+										showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Input>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.FiscalYearEgp}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prEgpInfo>/EGP_YEAR}" type="Text" textAlign="Left" change="handleChangeEgp"
+										showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="4">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Input>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+					<form:FormContainer visible="true" title="{i18n>Label.InitDataPr}">
+						<form:formElements>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.PrDocType}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prEgpInfo>/BSART}" change="onChangeDocumentTypeEgp" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHDocumentTypeEgp" app:KNTTP="EGP"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrHeader/BSART/@maxLength', formatter:'.formatter.parseInt'}">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Input>
+									<Text text="{prEgpInfo>/BSART_NAME}">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Text>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.Plant}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prEgpInfo>/WERKS}" change="onChangePlantEgp" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHPlantEgp" app:KNTTP="EGP"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrHeader/WERKS/@maxLength', formatter:'.formatter.parseInt'}">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Input>
+									<Text text="{prEgpInfo>/WERKS_NAME}">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Text>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.PurchasingGroup}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prEgpInfo>/EKGRP}" change="onChangePurchasingGroupEgp" type="Text" textAlign="Left"
+										showValueHelp="true" valueHelpRequest="onVHPurchasingGroupEgp" app:KNTTP="EGP"
+										enabled="true" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="{path:'/#PrHeader/EKGRP/@maxLength', formatter:'.formatter.parseInt'}">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Input>
+									<Text text="{prEgpInfo>/EKGRP_NAME}">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Text>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+			</form:Form>
+		</content>
+		<beginButton>
+			
+		</beginButton>
+		<buttons>
+			<Button text="" icon="sap-icon://message-popup" type="Emphasized" iconFirst="true" width="auto"
+				enabled="true" iconDensityAware="false" press="handleErrorLogEgpPress" visible="{=!!${errorsEgp>/}.length}"/>
+			<Button text="{i18n>Label.Ok}" type="Accept" press="doCreatePrRefEgp" 
+				enabled="{= ${prEgpInfo>/EGP_NO} !== '' &amp;&amp; ${prEgpInfo>/EGP_YEAR} !== '' &amp;&amp; ${prEgpInfo>/BSART} !== '' &amp;&amp; ${prEgpInfo>/WERKS} !== '' &amp;&amp; ${prEgpInfo>/EKGRP} !== '' }"/>
+			<Button text="{i18n>Button.Cancel}" type="Default" press="onCloseDialogEgp"/>
+		</buttons>
+		<customHeader/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

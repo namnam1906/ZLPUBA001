@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:dnd="sap.ui.core.dnd">
+	<Table id="idPrListEgp" class="sapUiTinyMarginEnd" mode="MultiSelect" selectionChange="onSelectPrEgp" growing="true" growingThreshold="10"
+		beforeOpenContextMenu="onBeforeOpenContextMenu" items="{prItem>/}">
+		<headerToolbar>
+			<OverflowToolbar design="Transparent">
+				<Title text="{i18n>Label.PrInfo} ({=${prItem>/}.length})"/>
+				<ToolbarSpacer/>
+				<Button text="{i18n>Button.AssignEgp}" iconFirst="true" type="Emphasized" press="handleAssignEgp">
+					<layoutData>
+						<OverflowToolbarLayoutData moveToOverflow="true"/>
+					</layoutData>
+				</Button>
+				<Button text="{i18n>Button.UnAssignEgp}" iconFirst="true" type="Default" press="handleUnAssignEgp">
+					<layoutData>
+						<OverflowToolbarLayoutData moveToOverflow="true"/>
+					</layoutData>
+				</Button>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column hAlign="Center" width="70px" demandPopin="false">
+				<VBox>
+					<Text text="{i18n>Label.ItemList}"/>
+					<Text text="PR"/>
+				</VBox>
+			</Column>
+			<Column demandPopin="false">
+				<VBox>
+					<Text text="{i18n>Label.Material} /"/>
+					<Text text="{i18n>Label.ShortText}"/>
+				</VBox>
+			</Column>
+			<Column hAlign="End" width="100px" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>Label.Qty}"/>
+			</Column>
+			<Column hAlign="End" width="120px" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>Label.TotalValue}"/>
+			</Column>
+			<Column hAlign="Center" width="70px" demandPopin="true" vAlign="Middle" minScreenWidth="5000px" popinDisplay="WithoutHeader">
+				<Text text="{i18n>Label.ItemList} e-GP"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Inactive">
+				<cells>
+					<Text text="{path:'prItem>BNFPO', formatter:'.formatter.parseInt'}"/>
+					<ObjectIdentifier title="{prItem>MATNR}" text="{prItem>TXZ01}" titleActive="false" visible="true"/>
+					<ObjectNumber
+						number="{ path: 'prItem>MENGE', type: 'sap.ui.model.type.Float', formatOptions: { minFractionDigits: 2, maxFractionDigits: 2} }"
+						unit="{prItem>MEINS_NAME}" emphasized="false"/>
+					<ObjectNumber
+						number="{ path: 'prItem>RLWRT', type: 'sap.ui.model.type.Float', formatOptions: { minFractionDigits: 2, maxFractionDigits: 2} }"
+						unit="{prItem>WAERS}" emphasized="false"/>
+					<HBox justifyContent="Center" alignContent="Center" alignItems="Center">
+						<Text text="{i18n>Label.ItemList} e-GP: " class="sapUiTinyMarginEnd"/>
+						<Select selectedKey="{prItem>ZZMMEGP_ITEM}" change="handleChangeSelectEgpItem"
+							forceSelection="false" items="{path: 'prEgpItemList>/', templateShareable: false}">
+							<core:Item key="{prEgpItemList>key}" text="{prEgpItemList>text}"/>
+						</Select>
+					</HBox>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

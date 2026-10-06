@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="{i18n>Button.AssignEgp}" type="Standard"
+		verticalScrolling="true">
+		<content>
+			<layout:Grid defaultSpan="XL12 L12 M12 S12">
+				<layout:content>
+					<form:Form>
+						<form:layout>
+							<form:ResponsiveGridLayout labelSpanXL="6" labelSpanL="6" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+								emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+						</form:layout>
+						<form:formContainers>
+							<form:FormContainer title="">
+								<form:formElements>
+									<form:FormElement>
+										<form:label>
+											<Label text="{i18n>Label.SelectEgpItem}" class="sapUiTinyMarginBottom"/>
+										</form:label>
+										<form:fields>
+											<Select selectedKey="-" forceSelection="false" items="{ path: 'prEgpItemList>/' }">
+												<core:Item key="{prEgpItemList>key}" text="{prEgpItemList>text}"/>
+											</Select>
+										</form:fields>
+									</form:FormElement>
+								</form:formElements>
+							</form:FormContainer>
+						</form:formContainers>
+					</form:Form>
+				</layout:content>
+			</layout:Grid>
+			<!--<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="sapUiSmallMargin">-->
+			<!--<Label text="{i18n>Label.SelectEgpItem}" class="sapUiTinyMarginBottom"/>-->
+			<!--<Select selectedKey="-"-->
+			<!--	forceSelection="false"-->
+			<!--	items="{-->
+			<!--		path: 'prEgpItemList>/'-->
+			<!--	}">-->
+			<!--	<core:Item key="{prEgpItemList>key}" text="{prEgpItemList>text}" />-->
+			<!--</Select>-->
+			<!--</VBox>-->
+		</content>
+		<beginButton></beginButton>
+		<buttons>
+			<!--<Button text="{controlModel>/ERROR_NUM}" icon="sap-icon://message-popup" type="Emphasized" iconFirst="true" width="auto"-->
+			<!--	enabled="true" iconDensityAware="false" press="handleErrorLogEgpPress" visible="{controlModel>/VISIBLE}"/>-->
+			<!--<ToolbarSpacer/>-->
+			<Button text="{i18n>Label.Ok}" type="Emphasized" press="doSelectEgpItem"/>
+			<Button text="{i18n>Button.Cancel}" type="Default" press="onCloseDialogSelectEgp"/>
+		</buttons>
+		<customHeader/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

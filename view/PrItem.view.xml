@@ -1,0 +1,39 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.cu.s4hana.zlpuba001.controller.PrItem" xmlns:uxap="sap.uxap" xmlns="sap.m"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" >
+	<Page
+		id="idPrItemPage"
+		title="{i18n>Label.PrItemTitle}"
+		showHeader="true" 
+		showNavButton="true">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button type="Back" press="handleBackPress" />
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>Label.PrItemTitle}"/>
+				</contentMiddle>
+				<contentRight>
+					<!--<Button text="{i18n>Button.PreviousItem}" icon="sap-icon://navigation-left-arrow" iconFirst="true" type="Default" />-->
+					<Button id="idGoToPreviousItem" icon="sap-icon://media-reverse" iconFirst="true" type="Default" press="handleGoToPreviousItem"/>
+					<!--<ComboBox id="idGotoItemList" width="auto">-->
+					<!--	<core:Item key="10" text="[10] ปากกาลูกลื่น 0.7 มม.ดำ" />-->
+					<!--	<core:Item key="20" text="[20] ปากกาเน้นข้อความ แดง" />-->
+					<!--</ComboBox>-->
+					<Select id="idSelectItem"
+					forceSelection="false"
+					change="handleItemChange"
+					items="{
+						path: 'prItem>/'
+					}">
+					<core:Item key="{prItem>BNFPO}" text="[{path:'prItem>BNFPO', formatter:'.formatter.parseInt'}] {prItem>TXZ01}" />
+					<!--<core:Item key="{prItem>BNFPO}" text="[{prItem>BNFPO}] {prItem>TXZ01}" />-->
+				</Select>
+					<!--<Button text="{i18n>Button.NextItem}" icon="sap-icon://navigation-right-arrow" iconFirst="false" type="Default" />-->
+					<Button id="idGoToNextItem" icon="sap-icon://media-play" iconFirst="false" type="Default" press="handleGoToNextItem"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<footer/>
+	</Page>
+</mvc:View>

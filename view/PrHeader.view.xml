@@ -1,0 +1,28 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.cu.s4hana.zlpuba001.controller.PrHeader" xmlns:uxap="sap.uxap" xmlns="sap.m"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form">
+	<Page
+		id="idPrHeaderPage"
+		title="{i18n>Label.PrNo}"
+		showHeader="true" 
+		showNavButton="true">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button type="Back" press="handleBackPress" />
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>Label.PrNo}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button id="idButtonEdit" text="{i18n>Button.Edit}" type="Emphasized" press="handleEditPress" enabled="{= ${userParam>/EDIT_FLAG} }"
+						visible="{= ${prHeader>/STATUS} !== 'APP' &amp;&amp; ${prHeader>/STATUS} !== 'REJ' &amp;&amp; ${controlModel>/mode} === 'DISPLAY'}"/>
+					<Button id="idButtonCopy" text="{i18n>Button.Copy}" type="Default" press="handleCopyPrPress" 
+						visible="true" enabled="{= ${userParam>/CREATE_FLAG} }" />
+					<Button id="idButtonPrint" text="{i18n>Button.Print}" type="Default" press="handlePrintPrPress" 
+						visible="true" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<footer/>
+	</Page>
+</mvc:View>

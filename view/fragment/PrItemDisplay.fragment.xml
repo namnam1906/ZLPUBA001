@@ -1,0 +1,661 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:commons="sap.suite.ui.commons" xmlns:u="sap.ui.unified">
+	<uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="true"
+		class="sapUiSizeCompact">
+		<uxap:headerTitle>
+			<uxap:ObjectPageHeader objectTitle="{prItemDetail>/BANFN} / {prItemDetail>/BNFPO}" objectSubtitle="{prItemDetail>/TXZ01}"
+				isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false"></uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		<uxap:headerContent/>
+		<uxap:sections>
+			<uxap:ObjectPageSection title="{i18n>Label.GeneralData}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>Label.GeneralData}">
+						<uxap:blocks>
+							<layout:Grid defaultSpan="XL12 L12 M12 S12">
+								<layout:content>
+									<form:Form>
+										<form:layout>
+											<form:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+												emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="2" singleContainerFullSize="false"/>
+										</form:layout>
+										<form:formContainers>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.AccountAssignment} / {i18n>Label.ItemCategory}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/KNTTP} !== '' ? ${parts:['prItemDetail>/KNTTP','prItemDetail>/KNTTP_NAME','prItemDetail>/PSTYP','prItemDetail>/PSTYP_NAME'], formatter:'.formatter.parseCodeNameKnttpItemCat'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.Material}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{= ${prItemDetail>/MATNR} !== '' ? ${prItemDetail>/MATNR} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.ShortText}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{prItemDetail>/TXZ01}"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.MaterialGroup}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{prItemDetail>/MATKL_NAME} ({prItemDetail>/MATKL})"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.Plant}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/WERKS} !== '' ? ${parts:['prItemDetail>/WERKS','prItemDetail>/WERKS_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.StorageLocation}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/LGORT} !== '' ? ${parts:['prItemDetail>/LGORT','prItemDetail>/LGORT_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.PurchasingGroup}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{prItemDetail>/EKGRP_NAME} ({prItemDetail>/EKGRP})"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.DesiredVendor}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/LIFNR} !== '' ? ${parts:['prItemDetail>/LIFNR','prItemDetail>/LIFNR_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.TrackingNumber}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{= ${prItemDetail>/BEDNR} !== '' ? ${prItemDetail>/BEDNR} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.VendorMaterial}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{= ${prItemDetail>/IDNLF} !== '' ? ${prItemDetail>/IDNLF} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement visible="{= ${prHeader>/BSART} !== '1A31'}">
+														<form:label>
+															<Label text="{i18n>Label.EgpNo} / {i18n>Label.EgpYear}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{= ${prItemDetail>/ZZMMEGP_PROJ} !== '' ? ${parts:['prItemDetail>/ZZMMEGP_PROJ','prItemDetail>/ZZMMEGP_YEAR'], formatter:'.formatter.parseEgp'}  : '-' }" />
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement visible="{= ${prHeader>/BSART} !== '1A31'}">
+														<form:label>
+															<Label text="{i18n>Label.EgpItem}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{= ${prItemDetail>/ZZMMEGP_ITEM} !== '' ? ${prItemDetail>/ZZMMEGP_ITEM} : '-' }" />
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement visible="{= ${prHeader>/BANFN} !== 'NEW' &amp;&amp; ${prItemDetail>/PURCH_DOC} !== ''}">
+														<form:label>
+															<Label text="{i18n>Label.PurchDoc}" required="false"/>
+														</form:label>
+														<form:fields>
+															<VBox>
+															</VBox>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+										</form:formContainers>
+									</form:Form>
+								</layout:content>
+							</layout:Grid>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection title="{i18n>Label.LimitService}" visible="{= ${prItemDetail>/PSTYP} === 'D' || ${prItemDetail>/PSTYP} === '9'}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>Label.LimitService}">
+						<uxap:blocks>
+							<layout:Grid defaultSpan="XL12 L12 M12 S12">
+								<layout:content>
+									<form:Form>
+										<form:layout>
+											<form:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+												emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="2" singleContainerFullSize="false"/>
+										</form:layout>
+										<form:formContainers>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.SumLimit}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{path:'prItemDetail>/SUMLIMIT', formatter:'.formatter.parseValue'} {prItemDetail>/WAERS}" class="sapUiMediumMarginEnd">
+																<!--<layoutData>-->
+																<!--	<layout:GridData span="XL7 L7 M7 S12"/>-->
+																<!--</layoutData>-->
+															</Text>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.ExpectLimit}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{path:'prItemDetail>/COMMITMENT', formatter:'.formatter.parseValue'} {prItemDetail>/WAERS}"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.NoLimit}" required="false"/>
+														</form:label>
+														<form:fields>
+															<CheckBox text="" selected="{prItemDetail>/NOLIMIT}" editable="false"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+										</form:formContainers>
+									</form:Form>
+								</layout:content>
+							</layout:Grid>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection title="{i18n>Label.PurchasingData}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>Label.PurchasingData}">
+						<uxap:blocks>
+							<layout:Grid defaultSpan="XL12 L12 M12 S12">
+								<layout:content>
+									<form:Form>
+										<form:layout>
+											<form:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+												emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="2" singleContainerFullSize="false"/>
+										</form:layout>
+										<form:formContainers>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.Quantity}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{path:'prItemDetail>/MENGE', formatter:'.formatter.parseValue'} {prItemDetail>/MEINS_NAME}"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement visible="{= ${prItemDetail>/KNTTP} === '' || ${prItemDetail>/KNTTP} === '-'}">
+														<form:label>
+															<Label text="{i18n>Label.ValType}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/BWTAR} !== '' ? ${parts:['prItemDetail>/BWTAR','prItemDetail>/BWTAR_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement visible="{= ${prItemDetail>/KNTTP} === 'U'}">
+														<form:label>
+															<Label text="{i18n>Label.FundCenter}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/ZZMM_FISTL} !== '' ? ${parts:['prItemDetail>/ZZMM_FISTL','prItemDetail>/FISTL_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement visible="{= ${prItemDetail>/KNTTP} === 'U'}">
+														<form:label>
+															<Label text="{i18n>Label.Fund}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/ZZMM_GEBER} !== '' ? ${parts:['prItemDetail>/ZZMM_GEBER','prItemDetail>/GEBER_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.UnitPrice}" required="false"/>
+														</form:label>
+														<form:fields>
+															<!--<Text-->
+															<!--	text="{path:'prItemDetail>/PREIS', formatter:'.formatter.parseValue'} {path:'prItemDetail>/WAERS', formatter:'.formatter.parseCurrency'}"/>-->
+															<Text text="{path:'prItemDetail>/PREIS', formatter:'.formatter.parseValue'} {prItemDetail>/WAERS}"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.PriceUnit}" required="false"/>
+														</form:label>
+														<form:fields>
+															<!--<Text-->
+															<!--	text="{path:'prItemDetail>/PEINH', formatter:'.formatter.parseValue'} {path:'prItemDetail>/WAERS', formatter:'.formatter.parseCurrency'}"/>-->
+															<Text text="{path:'prItemDetail>/PEINH', formatter:'.formatter.parseValue'} {prItemDetail>/MEINS_NAME}"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.TotalValue}" required="false"/>
+														</form:label>
+														<form:fields>
+															<!--<Text-->
+															<!--	text="{path:'prItemDetail>/RLWRT', formatter:'.formatter.parseValue'} {path:'prItemDetail>/WAERS', formatter:'.formatter.parseCurrency'}"/>-->
+															<Text text="{path:'prItemDetail>/RLWRT', formatter:'.formatter.parseValue'} {prItemDetail>/WAERS}"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.DeliveryDate}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{path: 'prItemDetail>/LFDAT', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy', UTC: false, style: 'short' } }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.PurchaseRequisitioner}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{= ${prItemDetail>/AFNAM} !== '' ? ${prItemDetail>/AFNAM} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.FiscalYearFm}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text text="{prItemDetail>/ZZFM_YEAR}"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+										</form:formContainers>
+									</form:Form>
+								</layout:content>
+							</layout:Grid>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection title="{i18n>Label.AccountAssignment}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>Label.AccountAssignment} ({prItemDetail>/KNTTP_NAME})"
+						visible="{= ${prItemDetail>/KNTTP} === '' || ${prItemDetail>/KNTTP} === '-'}">
+						<uxap:blocks>
+							<layout:Grid defaultSpan="XL12 L12 M12 S12">
+								<layout:content>
+									<form:Form>
+										<form:layout>
+											<form:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+												emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+										</form:layout>
+										<form:formContainers>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.Fund}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/GEBER} !== '' ? ${parts:['prItemDetail>/GEBER','prItemDetail>/GEBER_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.FunctionalArea}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/FKBER} !== '' ? ${parts:['prItemDetail>/FKBER','prItemDetail>/FKBER_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.FundCenter}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/FISTL} !== '' ? ${parts:['prItemDetail>/FISTL','prItemDetail>/FISTL_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.CommitmentItem}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/FIPOS} !== '' ? ${parts:['prItemDetail>/FIPOS','prItemDetail>/FIPOS_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<!--<form:FormElement>-->
+													<!--	<form:label>-->
+													<!--		<Label text="{i18n>Label.ControllingArea}" required="false"/>-->
+													<!--	</form:label>-->
+													<!--	<form:fields>-->
+													<!--		<Text-->
+													<!--			text="{= ${prItemDetail>/KOKRS} !== '' ? ${parts:['prItemDetail>/KOKRS','prItemDetail>/KOKRS_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>-->
+													<!--	</form:fields>-->
+													<!--</form:FormElement>-->
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.EarmarkedFunds}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prItemDetail>/KBLNR} !== '' ? ${parts:['prItemDetail>/KBLNR','prItemDetail>/KBLPOS'], formatter:'.formatter.parseDocWithDocItem'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+										</form:formContainers>
+									</form:Form>
+								</layout:content>
+							</layout:Grid>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+					<uxap:ObjectPageSubSection title="{i18n>Label.AccountAssignment} ({prItemDetail>/KNTTP_NAME})" visible="{= ${prItemDetail>/KNTTP} === 'K'}">
+						<uxap:blocks>
+							<layout:Grid defaultSpan="XL12 L12 M12 S12">
+								<layout:content>
+									<form:Form>
+										<form:layout>
+											<form:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+												emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+										</form:layout>
+										<form:formContainers>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.GlAccount}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/SAKTO} !== '' ? ${parts:['prAccountAssignment>/0/SAKTO','prAccountAssignment>/0/SAKTO_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.BusinessArea}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/GSBER} !== '' ? ${parts:['prAccountAssignment>/0/GSBER','prAccountAssignment>/0/GSBER_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.ControllingArea}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/KOKRS} !== '' ? ${parts:['prAccountAssignment>/0/KOKRS','prAccountAssignment>/0/KOKRS_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.AccountAssignment.CostCenter}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/KOSTL} !== '' ? ${parts:['prAccountAssignment>/0/KOSTL','prAccountAssignment>/0/KOSTL_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.Order}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/AUFNR} !== '' ? ${parts:['prAccountAssignment>/0/AUFNR','prAccountAssignment>/0/AUFNR_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+											<form:FormContainer title="">
+												<form:formElements>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.Fund}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/GEBER} !== '' ? ${parts:['prAccountAssignment>/0/GEBER','prAccountAssignment>/0/GEBER_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.FunctionalArea}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/FKBER} !== '' ? ${parts:['prAccountAssignment>/0/FKBER','prAccountAssignment>/0/FKBER_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.FundCenter}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/FISTL} !== '' ? ${parts:['prAccountAssignment>/0/FISTL','prAccountAssignment>/0/FISTL_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.CommitmentItem}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/FIPOS} !== '' ? ${parts:['prAccountAssignment>/0/FIPOS','prAccountAssignment>/0/FIPOS_NAME'], formatter:'.formatter.parseCodeName'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement>
+														<form:label>
+															<Label text="{i18n>Label.EarmarkedFunds}" required="false"/>
+														</form:label>
+														<form:fields>
+															<Text
+																text="{= ${prAccountAssignment>/0/KBLNR} !== '' ? ${parts:['prAccountAssignment>/0/KBLNR','prAccountAssignment>/0/KBLPOS'], formatter:'.formatter.parseDocWithDocItem'} : '-' }"/>
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+										</form:formContainers>
+									</form:Form>
+								</layout:content>
+							</layout:Grid>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+					<uxap:ObjectPageSubSection title="{i18n>Label.AccountAssignment} ({prItemDetail>/KNTTP_NAME})" visible="{= ${prItemDetail>/KNTTP} === 'A'}">
+						<uxap:blocks>
+							<Table width="100%" growing="true" growingScrollToLoad="true" growingThreshold="50" mode="None" items="{prAccountAssignment>/}">
+								<columns>
+									<Column width="40px" hAlign="Center" vAlign="Top" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+										<header>
+											<Text text="{i18n>Label.No}"/>
+										</header>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" demandPopin="false">
+										<header>
+											<Text text="{i18n>Label.Asset}"/>
+										</header>
+									</Column>
+									<Column width="50px" hAlign="Left" vAlign="Top" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+										<header>
+											<Text text="{i18n>Label.SubAsset}"/>
+										</header>
+									</Column>
+									<Column width="70px" hAlign="Right" vAlign="Top" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+										<header>
+											<Text text="{i18n>Label.Qty}"/>
+										</header>
+									</Column>
+									<Column width="100px" hAlign="Left" vAlign="Top" popinDisplay="Inline" demandPopin="false" minScreenWidth="Desktop">
+										<header>
+											<Text text="{i18n>Label.GlAccount}"/>
+										</header>
+									</Column>
+									<Column width="50px" hAlign="Center" vAlign="Middle" popinDisplay="Inline" demandPopin="false" minScreenWidth="Desktop">
+										<header>
+											<Text text="{i18n>Label.BusA}"/>
+										</header>
+									</Column>
+									<Column width="100px" hAlign="Left" vAlign="Top" popinDisplay="Inline" demandPopin="false" minScreenWidth="Desktop">
+										<header>
+											<Text text="{i18n>Label.CommitmentItem}"/>
+										</header>
+									</Column>
+									<Column width="100px" hAlign="Left" vAlign="Top" popinDisplay="Inline" demandPopin="false" minScreenWidth="Desktop">
+										<header>
+											<Text text="{i18n>Label.Order}"/>
+										</header>
+									</Column>
+									<Column width="110px" hAlign="Left" vAlign="Top" popinDisplay="Inline" demandPopin="false" minScreenWidth="Desktop">
+										<header>
+											<Text text="{i18n>Label.FundCenter}"/>
+										</header>
+									</Column>
+									<Column width="100px" hAlign="Left" vAlign="Top" popinDisplay="Inline" demandPopin="false" minScreenWidth="Desktop">
+										<header>
+											<Text text="{i18n>Label.Fund}"/>
+										</header>
+									</Column>
+									<Column width="120px" hAlign="Left" vAlign="Top" popinDisplay="Inline" demandPopin="false" minScreenWidth="Desktop">
+										<header>
+											<Text text="{i18n>Label.FunctionalArea}"/>
+										</header>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Inactive">
+										<cells>
+											<Text text="{prAccountAssignment>ZEBKN}"/>
+											<VBox>
+												<Text text="{prAccountAssignment>ANLN1}" maxLines="1" wrapping="false" textAlign="Begin"/>
+												<Text text="{prAccountAssignment>ANLN1_NAME}" maxLines="2" wrapping="true" textAlign="Begin"/>
+											</VBox>
+											<Text text="{prAccountAssignment>ANLN2}" maxLines="1" wrapping="false" textAlign="Begin"/>
+											<Text text="{prAccountAssignment>MENGE} {prAccountAssignment>MEINS_NAME}"/>
+											<VBox direction="Column" justifyContent="Start" displayInline="false">
+												<items>
+													<Text text="{prAccountAssignment>SAKTO}" maxLines="1" wrapping="false" textAlign="Begin"/>
+													<Text text="{prAccountAssignment>SAKTO_NAME}" maxLines="2" wrapping="true" textAlign="Begin"/>
+												</items>
+											</VBox>
+											<Text text="{prAccountAssignment>GSBER}"/>
+											<VBox direction="Column" justifyContent="Start" displayInline="false">
+												<items>
+													<Text text="{prAccountAssignment>FIPOS}" maxLines="1" wrapping="false" textAlign="Begin"/>
+													<Text text="{prAccountAssignment>FIPOS_NAME}" maxLines="2" wrapping="true" textAlign="Begin"/>
+												</items>
+											</VBox>
+											<VBox direction="Column" justifyContent="Start" displayInline="false">
+												<items>
+													<Text text="{prAccountAssignment>AUFNR}" maxLines="1" wrapping="false" textAlign="Begin"/>
+													<Text text="{prAccountAssignment>AUFNR_NAME}" maxLines="2" wrapping="true" textAlign="Begin"/>
+												</items>
+											</VBox>
+											<VBox direction="Column" justifyContent="Start" displayInline="false">
+												<items>
+													<Text text="{prAccountAssignment>FISTL}" maxLines="1" wrapping="false" textAlign="Begin"/>
+													<Text text="{prAccountAssignment>FISTL_NAME}" maxLines="2" wrapping="true" textAlign="Begin"/>
+												</items>
+											</VBox>
+											<VBox direction="Column" justifyContent="Start" displayInline="false">
+												<items>
+													<Text text="{prAccountAssignment>GEBER}" maxLines="1" wrapping="false" textAlign="Begin"/>
+													<Text text="{prAccountAssignment>GEBER_NAME}" maxLines="2" wrapping="true" textAlign="Begin"/>
+												</items>
+											</VBox>
+											<VBox direction="Column" justifyContent="Start" displayInline="false">
+												<items>
+													<Text text="{prAccountAssignment>FKBER}" maxLines="1" wrapping="false" textAlign="Begin"/>
+													<Text text="{prAccountAssignment>FKBER_NAME}" maxLines="2" wrapping="true" textAlign="Begin"/>
+												</items>
+											</VBox>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection title="{i18n>Label.LongText}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>Label.LongText}">
+						<uxap:blocks>
+							<IconTabBar headerMode="Inline" upperCase="false" expandable="false" expanded="true" backgroundDesign="Transparent" items="{prItemText>/}"
+								applyContentPadding="true" showOverflowSelectList="true" class="sapUiResponsiveContentPadding myWidth">
+								<items>
+									<IconTabFilter icon="sap-icon://notes" design="Horizontal" iconColor="{= ${prItemText>DETAIL} !== '' ? 'Positive' : 'Neutral'}"
+										text="{prItemText>TITLE}" tooltip="{prItemText>TITLE}" key="{prItemText>TDID}">
+										<TextArea rows="5" cols="200" editable="false" value="{prItemText>DETAIL}" change="handleChangeLongText"/>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+		<uxap:footer>
+		</uxap:footer>
+	</uxap:ObjectPageLayout>
+</core:FragmentDefinition>

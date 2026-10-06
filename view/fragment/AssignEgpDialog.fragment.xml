@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="{i18n>Button.UpdateEgpNumber}" type="Standard"
+		verticalScrolling="true">
+		<content>
+			<VBox>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title/>
+				<form:layout>
+					<form:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</form:layout>
+				<form:formContainers>
+					<form:FormContainer visible="true" title="">
+						<form:formElements>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.EgpNo}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prEgpInfo>/EGP_NO}" type="Text" textAlign="Left"
+										showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Input>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>Label.FiscalYearEgp}" required="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{prEgpInfo>/EGP_YEAR}" type="Text" textAlign="Left"
+										showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="4">
+										<layoutData>
+											<layout:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Input>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+			</form:Form>
+				<CheckBox text="{i18n>Label.OnlyPrItemNoEgp}" selected="{prEgpInfo>/NO_EGP_FLAG}" 
+        class="sapUiTinyMarginBegin sapUiTinyMarginBottom" />
+			</VBox>
+		</content>
+		<beginButton>
+			
+		</beginButton>
+		<buttons>
+			<Button text="" icon="sap-icon://message-popup" type="Emphasized" iconFirst="true" width="auto"
+				enabled="true" iconDensityAware="false" press="handleErrorLogEgpPress" visible="{=!!${errorsEgp>/}.length}"/>
+			<Button text="{i18n>Label.Ok}" type="Emphasized" press="doCreatePrRefEgp" 
+				enabled="{= ${prEgpInfo>/EGP_NO} !== '' &amp;&amp; ${prEgpInfo>/EGP_YEAR} !== '' }"/>
+			<Button text="{i18n>Button.Cancel}" type="Default" press="onCloseDialogEgp"/>
+		</buttons>
+		<customHeader/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>
